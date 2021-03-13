@@ -9,39 +9,102 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            // GetAllCarTest();
-            //UpdateCarTest();
-            // GetAllBrandNameTest();
-            // GetAllColorNameTest();
-            DTOTest();
+            // GetAllTest();
+            //UpdateTest();
+            //GetAllBrandNameTest();
+            //GetAllColorNameTest();
+            // DTOTest();
+            //NiyeCalismadiginiAnlamadigimAddTest();
+        }
 
+        private static void NiyeCalismadiginiAnlamadigimAddTest()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+            Car NewCar = new Car { Id = 6, BrandId = 3, ColorId = 2, CarName = "Wolksvagen Golf", DailyPrice = 120, ModelYear = "2016", Descriptions = "Otomatik vites" };
+            carManager.Add(NewCar);
+            var result = carManager.Add(NewCar);
+            if (result.Success == true)
+            {
+                var result2 = carManager.GetCarDetails();
+                if (result2.Success == true)
+                {
+                    foreach (var car in result2.Data)
+                    {
+                        Console.WriteLine(car.CarName + "  ------->  " + car.BrandName + "  ------->  " + car.ColorName);
+                        Console.WriteLine();
+                        //Join edilmiş 3 farklı tablo'nun 3 ayrı elemanı ekrana listelenmiştir.
+                    }
+                }
+                Console.WriteLine(result.Message);
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
         }
 
         private static void DTOTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetCarDetails())
+            var result = carManager.GetCarDetails();
+            if (result.Success==true)
             {
-                Console.WriteLine(car.CarName + "  ------->  " + car.BrandName + "  ------->  " + car.ColorName);
-                //Join edilmiş 3 farklı tablo'nun 3 ayrı elemanı ekrana listelenmiştir.
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine(car.CarName + "  ------->  " + car.BrandName + "  ------->  " + car.ColorName);
+                    Console.WriteLine();
+                    //Join edilmiş 3 farklı tablo'nun 3 ayrı elemanı ekrana listelenmiştir.
+                }
+                Console.WriteLine(result.Message); 
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+
         }
 
         private static void GetAllColorNameTest()
         {
             ColorManager colorManager = new ColorManager(new EfColorDal());
-            foreach (var color in colorManager.GetAll())
+            var result = colorManager.GetAll();
             {
-                Console.WriteLine(color.ColorName);
+                if (result.Success == true)
+                {
+                    foreach (var color in result.Data)
+                    {
+                        Console.WriteLine(color.ColorName);
+                    }
+
+                    Console.WriteLine(result.Message);
+                }
+                else
+                {
+                    Console.WriteLine(result.Message);
+                }
             }
+           
         }
 
         private static void GetAllBrandNameTest()
         {
             BrandManager brandManager = new BrandManager(new EfBrandDal());
-            foreach (var brand in brandManager.GetAll())
+            var result = brandManager.GetAll();
             {
-                Console.WriteLine(brand.BrandName);
+                if (result.Success == true)
+                {
+                    foreach (var brand in result.Data)
+                    {
+                        Console.WriteLine(brand.BrandName);
+                    }
+
+                    Console.WriteLine(result.Message);
+                }
+                else
+                {
+                    Console.WriteLine(result.Message);
+                }
+
             }
         }
 
@@ -56,9 +119,19 @@ namespace ConsoleUI
         private static void GetAllTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetAll())
+            var result = carManager.GetAll();
+            if (result.Success==true)
             {
-                Console.WriteLine(car.CarName);
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine(car.CarName);
+                }
+
+                Console.WriteLine(result.Message);
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
             }
         }
 

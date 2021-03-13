@@ -14,7 +14,7 @@ namespace DataAccess.EntityFramework
     public class EfCarDal : EfEntityRepositoryBase<Car, RentACarContext>, ICarDal
     {
         //Arabaya özel operasyonlar buruaya yazılacak.
-        public List<CarDetailDto> GetProductDetails()
+        public List<CarDetailDto> GetCarDetails()
         {
             using (RentACarContext context = new RentACarContext ())
             {

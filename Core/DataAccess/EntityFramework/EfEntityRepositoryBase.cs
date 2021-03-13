@@ -8,6 +8,8 @@ using System.Text;
 
 namespace Core.DataAccess.EntityFramework
 {
+    //EF için evrensel bir katmandır.
+    //EfCarDal^da ki katman burada evrensel bir koda dönüşerek Car yeribe TEntity , RentACar DB'si yerine de TContext yazılmış ve dilediğimiz projeye entegre edebilceğimziz(Değişkenleri değiştirerek) evrensel bir Base olarak işimizi görebilecektir
     public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity>
         where TEntity : class, IEntity, new()//IEntity'i yamasın diye newledik
         where TContext : DbContext, new()
