@@ -18,5 +18,7 @@ namespace Business.Constants
         public static string ColorsListed = "Renkler Listelendi!";
         public static string ColorGotByColorId = "İstenilen ID numarasına sahip renk ekrana verildi!";
         public static string DetailsListed = "İstenilen araba detayları listelendi!";
+        public static string CustomerAdded = "Müsteri Eklendi!";
+        public static string RentalAdded = "Rent Eklendi!";
     }
 }
