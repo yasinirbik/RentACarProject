@@ -19,9 +19,9 @@ namespace Business.Concrete
         }
         public IResult Add(Car car)
         {
-            if (car.CarName.Length<2 && car.DailyPrice<=0)
+            if (car.CarName.Length < 2 || car.DailyPrice <= 0)
             {
-                return new ErrorResult(Messages.InvalidProductName);
+                return new ErrorResult(Messages.InvalidCarValues);
             }
                 _carDal.Add(car);
                 return new SuccessResult(Messages.CarAdded);
@@ -75,9 +75,9 @@ namespace Business.Concrete
 
         public IResult Update(Car car)
         {
-            if (car.CarName.Length < 2 && car.DailyPrice <= 0)
+            if (car.CarName.Length < 2 || car.DailyPrice <= 0)
             {
-                return new ErrorResult(Messages.InvalidProductName);
+                return new ErrorResult(Messages.InvalidCarValues);
             }
             _carDal.Update(car);
             return new SuccessResult(Messages.CarUpdated);

@@ -14,13 +14,66 @@ namespace ConsoleUI
             //GetAllBrandNameTest();
             //GetAllColorNameTest();
             // DTOTest();
-            //NiyeCalismadiginiAnlamadigimAddTest();
+            // NiyeCalismadiginiAnlamadigimAddTest();  // Çalışıyor db'ye ekleme yapıyor ama aynı zamnada listeleme yapmasını stesemde efrepository'deki "add" komutunun altndaki save.Context()'de hata veriyor ama eklme işleminde bir sorun yok.
+            // UpdateTestWithResults(); //Hatasız çalışmakta
+            //SimdilikCalismayanCustomerAdd();
+
+        }
+
+        private static void SimdilikCalismayanCustomerAdd()
+        {
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            Customer addedCustomer = new Customer() { UserId = 2, CompanyName = "Bursa Teknik Lisesi" };
+            customerManager.Add(addedCustomer);
+            var result = customerManager.Add(addedCustomer);
+            if (result.Success == true)
+            {
+                var result2 = customerManager.GetCustomerDetails();
+                if (result2.Success == true)
+                {
+                    foreach (var customer in result2.Data)
+                    {
+                        Console.WriteLine(customer.CompanyName);
+                        Console.WriteLine();
+                    }
+                }
+                Console.WriteLine(result.Message);
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+        }
+
+        private static void UpdateTestWithResults()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+            Car UpdatedCar = new Car() { Id = 3, CarName = "Honda crv", BrandId = 1, ColorId = 3, DailyPrice = 100, Descriptions = "Benzin falan", ModelYear = "2015" };
+            carManager.Update(UpdatedCar);
+            var result = carManager.Update(UpdatedCar);
+            if (result.Success == true)
+            {
+                var result2 = carManager.GetCarDetails();
+                if (result2.Success == true)
+                {
+                    foreach (var car in result2.Data)
+                    {
+                        Console.WriteLine(car.CarName);
+                        Console.WriteLine();
+                    }
+                }
+                Console.WriteLine(result.Message);
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
         }
 
         private static void NiyeCalismadiginiAnlamadigimAddTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-            Car NewCar = new Car { Id = 6, BrandId = 3, ColorId = 2, CarName = "Wolksvagen Golf", DailyPrice = 120, ModelYear = "2016", Descriptions = "Otomatik vites" };
+            Car NewCar = new Car {  BrandId = 3, ColorId = 1, CarName = "Wolksvagen Arteon", DailyPrice = 120, ModelYear = "2019", Descriptions = "Manuel vites" };
             carManager.Add(NewCar);
             var result = carManager.Add(NewCar);
             if (result.Success == true)
