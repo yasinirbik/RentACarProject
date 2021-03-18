@@ -82,5 +82,10 @@ namespace DataAccess.Concrete
         {
             throw new NotImplementedException();
         }
+
+        public Car Get(Expression<Func<Car, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

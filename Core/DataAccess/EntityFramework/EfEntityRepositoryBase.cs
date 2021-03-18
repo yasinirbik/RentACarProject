@@ -20,6 +20,7 @@ namespace Core.DataAccess.EntityFramework
             {
                 var addedEntity = context.Entry(entity);
                 addedEntity.State = EntityState.Added;
+                context.SaveChanges();
             }
         }
 
@@ -31,6 +32,15 @@ namespace Core.DataAccess.EntityFramework
                 DeletedEntity.State = EntityState.Deleted;
 
                 context.SaveChanges();
+            }
+        }
+
+        public TEntity Get(Expression<Func<TEntity, bool>> filter)
+        {
+            using (TContext context = new TContext())
+            {
+                return context.Set<TEntity>().SingleOrDefault(filter);
+                //SingleOrDefault tek öğe, FirstOrDefault kullanılrısa da ilk geleni verir
             }
         }
 
