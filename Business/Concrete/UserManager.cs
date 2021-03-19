@@ -20,7 +20,7 @@ namespace Business.Concrete
 
         public IResult Add(User user)
         {
-            if (user.UserId<=0)
+            if (user.FirstName.Length<=0)
             {
                 return new ErrorResult(Messages.UserNotAdded);
             }
