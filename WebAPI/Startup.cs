@@ -28,6 +28,7 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            /* //AUTOFAC ÝLE BURANIN MUADÝLÝ DAHA VERÝMLÝ BÝR KULLANIM YAPTIK.(Business.DependencyResolvers.Autofac.AutofacBusinessModule)
             services.AddSingleton<ICarService, CarManager>();
             services.AddSingleton<ICarDal, EfCarDal>(); 
             services.AddSingleton<IBrandService, BrandManager>();
@@ -40,6 +41,7 @@ namespace WebAPI
             services.AddSingleton<ICustomerDal, EfCustomerDal>();
             services.AddSingleton<IUserService, UserManager>();
             services.AddSingleton<IUserDal, EfUserDal>();
+            */
 
         }
 
